@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            list-style: none;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+        .container{
+            width: 75%;
+            height: 600px;
+            margin: 20px auto;
+            background-color:#EEE;
+            border-radius: 15px;
+        }
+        #title{
+            margin-left: 50px;
+        }
+        a{
+            text-decoration: none;
+            color: #c0a16b;
+        }
+
+        #picture{
+            width: 70%;
+            height: 420px;
+            clear:both;
+            display: block;
+            margin-top: 50px;
+            margin-left: 40px;
+            filter: brightness(70%);
+            transition: filter 1s linear;
+            cursor: pointer;
+          }
+        #picture:hover{
+            filter: brightness(100%);
+            transition: filter 1s linear;
+        }
+        .smallpic{
+            width: 80px;
+            height: 60px;
+        }
+        li{
+            float: left;
+            margin-right: 30px;
+        }
+        .pic_text{
+            text-align: center ;
+        }
+    </style>
+    <script>
+        window.onload = prepareGallery;
+        function prepareGallery() {
+            if(!document.getElementsByTagName) return false;
+            if(!document.getElementById) return false;
+            if(!document.getElementById("picture")) return false;
+            var myul = document.getElementById("imageul");
+            var alink = document.getElementsByTagName("a");
+            for(var i=0;i<alink.length;i++){
+                alink[i].onclick = function () {
+                    return changeImg(this)? false:true;
+                }
+            }
+        }
+        function changeImg(myPic) {
+            var source = myPic.getAttribute("href");
+            var title = myPic.getAttribute("title");
+            var myimg = document.getElementById("picture");
+            myimg.setAttribute("src",source);
+            p.innerHTML = title;
+            return true;
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h1 id="title">图片幻灯</h1>
+        <ul id="imageul">
+            <li><a href="image/car.jpg" title="炫酷跑车" ><img class="smallpic" src="image/car.jpg"></a></li>
+            <li><a href="image/flower.jpg" title="美丽花朵" ><img class="smallpic" src="image/flower.jpg"></a></li>
+            <li><a href="image/sky.jpg" title="浩瀚星空"  ><img class="smallpic" src="image/sky.jpg"></a></li>
+            <li><a href="image/nature.jpg" title="清新自然" ><img class="smallpic" src="image/nature.jpg"></a></li>
+        </ul>
+        <img id="picture" src="image/flower.jpg">
+        <div class="pic_text">
+            <h3 id="p">美丽花朵</h3>
+        </div>
+    </div>
+</body>
+</html>
